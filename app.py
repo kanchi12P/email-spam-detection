@@ -32,7 +32,7 @@ def home():
       return " ".join(text)
     data['text'] = data['text'].apply(text_processing)
 
-    vectorizer = TfidfVectorizer(max_features=3000)
+    vectorizer = TfidfVectorizer()
     vectors = vectorizer.fit_transform(data['text'])
     features = vectors
 
@@ -55,7 +55,7 @@ def home():
     to_check.append(email_text)
     feature = vectorizer.transform(to_check)
     prediction = rfc.predict(feature)
-    if(prediction == 0.):
+    if(prediction == 0):
         message='Not Spam'
     else:
         message='Spam'
