@@ -23,7 +23,7 @@ def home():
 
     email_text = request.form['rawtext']
 
-    data = pd.read_csv('spam.csv',encoding='latin-1')
+    data = pd.read_csv('spam.csv', encoding="latin-1")
     data.drop(['Unnamed: 2','Unnamed: 3','Unnamed: 4'],axis=1,inplace=True)
 
     def text_processing(text):
@@ -54,7 +54,7 @@ def home():
     to_check =[]
     to_check.append(email_text)
     feature = vectorizer.transform(to_check)
-    prediction = rfc.predict(feature)
+    prediction = rfc.predict(feature.toarray())
     if(prediction == 0):
         message='Not Spam'
     else:
